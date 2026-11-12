@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="ka" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="თანამშრომლები - გუნდის წევრები და მონაცემები JSONPlaceholder API-დან">
+  <title>თანამშრომლები | ჩემი პორტფოლიო</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.5.1 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Lordicon Player -->
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.35s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased">
+
+  <!-- ზედა პანელი და სემანტიკური ნავიგაცია -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- ლოგო -->
+        <a href="index.html" class="flex items-center gap-2.5 text-xl font-extrabold text-blue-600 tracking-tight hover:opacity-90 transition group">
+          <span class="w-9 h-9 bg-gradient-to-tr from-blue-600 to-indigo-600 text-white rounded-xl flex items-center justify-center text-sm shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform duration-200">
+            <i class="fa-solid fa-code"></i>
+          </span>
+          <span>საბა<span class="text-slate-900">.dev</span></span>
+        </a>
+
+        <!-- დესკტოპ ნავიგაცია -->
+        <nav aria-label="მთავარი ნავიგაცია" class="hidden md:block">
+          <ul class="flex items-center gap-1 lg:gap-2 text-sm font-semibold">
+            <li>
+              <a href="index.html" class="px-3 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50/70 transition inline-flex items-center gap-2">
+                <i class="fa-solid fa-house text-xs opacity-70"></i>
+                <span>მთავარი</span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html" class="px-3 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50/70 transition inline-flex items-center gap-2">
+                <i class="fa-solid fa-user text-xs opacity-70"></i>
+                <span>ჩემ შესახებ</span>
+              </a>
+            </li>
+            <li>
+              <a href="projects.html" class="px-3 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50/70 transition inline-flex items-center gap-2">
+                <i class="fa-solid fa-layer-group text-xs opacity-70"></i>
+                <span>პროექტები</span>
+              </a>
+            </li>
+            <li>
+              <a href="skills.html" class="px-3 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50/70 transition inline-flex items-center gap-2">
+                <i class="fa-solid fa-wand-magic-sparkles text-xs opacity-70"></i>
+                <span>უნარები</span>
+              </a>
+            </li>
+            <li>
+              <a href="team.html" class="px-3 py-2 rounded-xl bg-blue-600 text-white shadow-sm shadow-blue-500/25 transition inline-flex items-center gap-2">
+                <i class="fa-solid fa-users text-xs"></i>
+                <span>თანამშრომლები</span>
+              </a>
+            </li>
+            <li>
+              <a href="contact.html" class="px-3 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50/70 transition inline-flex items-center gap-2">
+                <i class="fa-solid fa-paper-plane text-xs opacity-70"></i>
+                <span>კონტაქტი</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- ბურგერ მენიუს ღილაკი მობილურისთვის -->
+        <button id="burger-btn" type="button" aria-label="მენიუს გახსნა" aria-expanded="false" aria-controls="mobile-nav" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition cursor-pointer">
+          <!-- ბურგერის აიქონი (3 ხაზი) -->
+          <svg id="burger-open-icon" class="w-6 h-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <!-- დახურვის აიქონი (X) -->
+          <svg id="burger-close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- მობილური ჩამოსაშლელი მენიუ (JS-ით კონტროლირებადი) -->
+      <nav id="mobile-nav" aria-label="მობილური ნავიგაცია" class="hidden md:hidden border-t border-slate-100 py-3.5">
+        <ul class="flex flex-col gap-1.5 text-sm font-semibold">
+          <li>
+            <a href="index.html" class="flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50/70 transition">
+              <span class="flex items-center gap-2.5">
+                <i class="fa-solid fa-house text-sm text-slate-400"></i>
+                <span>მთავარი</span>
+              </span>
+              <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+            </a>
+          </li>
+          <li>
+            <a href="about.html" class="flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50/70 transition">
+              <span class="flex items-center gap-2.5">
+                <i class="fa-solid fa-user text-sm text-slate-400"></i>
+                <span>ჩემ შესახებ</span>
+              </span>
+              <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+            </a>
+          </li>
+          <li>
+            <a href="projects.html" class="flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50/70 transition">
+              <span class="flex items-center gap-2.5">
+                <i class="fa-solid fa-layer-group text-sm text-slate-400"></i>
+                <span>პროექტები</span>
+              </span>
+              <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+            </a>
+          </li>
+          <li>
+            <a href="skills.html" class="flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50/70 transition">
+              <span class="flex items-center gap-2.5">
+                <i class="fa-solid fa-wand-magic-sparkles text-sm text-slate-400"></i>
+                <span>უნარები</span>
+              </span>
+              <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+            </a>
+          </li>
+          <li>
+            <a href="team.html" class="flex items-center justify-between px-4 py-3 rounded-xl bg-blue-600 text-white shadow-sm shadow-blue-500/25 transition">
+              <span class="flex items-center gap-2.5">
+                <i class="fa-solid fa-users text-sm"></i>
+                <span>თანამშრომლები</span>
+              </span>
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </a>
+          </li>
+          <li>
+            <a href="contact.html" class="flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50/70 transition">
+              <span class="flex items-center gap-2.5">
+                <i class="fa-solid fa-paper-plane text-sm text-slate-400"></i>
+                <span>კონტაქტი</span>
+              </span>
+              <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ძირითადი შიგთავსი -->
+  <main class="flex-1 max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-12 w-full">
+
+    <!-- გვერდის სათაური და აღწერა -->
+    <div class="mb-8 sm:mb-10 pb-5 sm:pb-6 border-b border-slate-200">
+      <div class="flex flex-wrap items-center gap-2 mb-2">
+        <span class="inline-flex items-center gap-1.5 bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">
+          <i class="fa-solid fa-cloud-arrow-down text-blue-600"></i>
+          <span>REST API მონაცემები</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full">
+          <i class="fa-solid fa-circle-check text-emerald-600"></i>
+          <span>JSONPlaceholder Users</span>
+        </span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-2">
+        ჩვენი გუნდი & თანამშრომლები
+      </h1>
+      <p class="text-slate-500 text-xs sm:text-base max-w-3xl leading-relaxed">
+        თანამშრომლების სია დინამიურად იტვირთება <code class="bg-slate-100 text-blue-600 px-1.5 py-0.5 rounded text-xs font-semibold">https://jsonplaceholder.typicode.com/users</code> მისამართიდან.
+        ინტეგრირებულია დამატებითი REST მეთოდები: <strong>POST</strong> (ახალი თანამშრომლის დამატება), <strong>GET /todos</strong> (დავალებების რეალურ დროში ნახვა) და <strong>DELETE</strong> (თანამშრომლის წაშლა).
+      </p>
+    </div>
+
+    <!-- API მეთოდების საინფორმაციო ბანერი -->
+    <section class="bg-gradient-to-r from-slate-900 via-slate-850 to-slate-800 text-white rounded-2xl p-4 sm:p-6 mb-8 shadow-md">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-sm sm:text-base font-bold text-blue-400 flex items-center gap-2 mb-1">
+            <i class="fa-solid fa-network-wired"></i>
+            <span>აქტიური HTTP REST მეთოდები:</span>
+          </h2>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="bg-blue-500/20 text-blue-300 border border-blue-400/30 px-2.5 py-1 rounded-lg">
+              <strong class="text-white">GET</strong> /users
+            </span>
+            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 px-2.5 py-1 rounded-lg">
+              <strong class="text-white">POST</strong> /users (დამატება)
+            </span>
+            <span class="bg-purple-500/20 text-purple-300 border border-purple-400/30 px-2.5 py-1 rounded-lg">
+              <strong class="text-white">GET</strong> /users/{id}/todos (დავალებები)
+            </span>
+            <span class="bg-rose-500/20 text-rose-300 border border-rose-400/30 px-2.5 py-1 rounded-lg">
+              <strong class="text-white">DELETE</strong> /users/{id} (წაშლა)
+            </span>
+          </div>
+        </div>
+        <button id="open-add-modal-btn" class="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold transition shadow-md hover:scale-105 active:scale-95 cursor-pointer">
+          <i class="fa-solid fa-user-plus text-xs"></i>
+          <span>თანამშრომლის დამატება (POST)</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ფილტრაციისა და ძიების პანელი -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+      <div class="relative flex-1 max-w-md">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <input 
+          type="search" 
+          id="search-input" 
+          placeholder="მოძებნეთ თანამშრომელი სახელით, კომპანიით ან ქალაქით..." 
+          class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition shadow-xs"
+        >
+      </div>
+
+      <div class="flex items-center justify-between sm:justify-end gap-3 text-xs sm:text-sm text-slate-500">
+        <span id="user-count" class="font-bold text-slate-700 bg-white px-3 py-2 rounded-xl border border-slate-200 shadow-xs inline-flex items-center gap-1.5">
+          <i class="fa-solid fa-users text-blue-600"></i>
+          <span>იტვირთება...</span>
+        </span>
+        <button id="refresh-btn" class="px-3 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition shadow-xs inline-flex items-center gap-1.5 font-semibold cursor-pointer" title="სიის განახლება">
+          <i class="fa-solid fa-rotate-right text-xs"></i>
+          <span class="hidden sm:inline">განახლება</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ჩატვირთვის ინდიკატორი (Skeleton loader) -->
+    <div id="loading-state" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+      <div class="bg-white rounded-2xl border border-slate-200/80 p-5 sm:p-6 shadow-xs animate-pulse space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-slate-200 rounded-2xl"></div>
+          <div class="flex-1 space-y-2">
+            <div class="h-4 bg-slate-200 rounded-md w-3/4"></div>
+            <div class="h-3 bg-slate-200 rounded-md w-1/2"></div>
+          </div>
+        </div>
+        <div class="space-y-2 pt-3 border-t border-slate-100">
+          <div class="h-3 bg-slate-200 rounded-md w-full"></div>
+          <div class="h-3 bg-slate-200 rounded-md w-4/5"></div>
+          <div class="h-3 bg-slate-200 rounded-md w-2/3"></div>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-200/80 p-5 sm:p-6 shadow-xs animate-pulse space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-slate-200 rounded-2xl"></div>
+          <div class="flex-1 space-y-2">
+            <div class="h-4 bg-slate-200 rounded-md w-3/4"></div>
+            <div class="h-3 bg-slate-200 rounded-md w-1/2"></div>
+          </div>
+        </div>
+        <div class="space-y-2 pt-3 border-t border-slate-100">
+          <div class="h-3 bg-slate-200 rounded-md w-full"></div>
+          <div class="h-3 bg-slate-200 rounded-md w-4/5"></div>
+          <div class="h-3 bg-slate-200 rounded-md w-2/3"></div>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-200/80 p-5 sm:p-6 shadow-xs animate-pulse space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-slate-200 rounded-2xl"></div>
+          <div class="flex-1 space-y-2">
+            <div class="h-4 bg-slate-200 rounded-md w-3/4"></div>
+            <div class="h-3 bg-slate-200 rounded-md w-1/2"></div>
+          </div>
+        </div>
+        <div class="space-y-2 pt-3 border-t border-slate-100">
+          <div class="h-3 bg-slate-200 rounded-md w-full"></div>
+          <div class="h-3 bg-slate-200 rounded-md w-4/5"></div>
+          <div class="h-3 bg-slate-200 rounded-md w-2/3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- შეცდომის შეტყობინება -->
+    <div id="error-state" class="hidden bg-rose-50 border border-rose-200 text-rose-800 rounded-2xl p-6 text-center my-6">
+      <div class="w-12 h-12 mx-auto rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-xl mb-3">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <h3 class="font-bold text-base mb-1">მონაცემების ჩატვირთვა ვერ მოხერხდა</h3>
+      <p class="text-xs sm:text-sm text-rose-600 mb-4" id="error-message">გთხოვთ, შეამოწმოთ ინტერნეტთან კავშირი და სცადოთ ხელახლა.</p>
+      <button onclick="fetchUsers()" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl transition cursor-pointer">
+        <i class="fa-solid fa-rotate-right mr-1.5"></i> ხელახლა ცდა
+      </button>
+    </div>
+
+    <!-- თანამშრომლების ბარათების ბადე -->
+    <div id="users-grid" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+      <!-- ბარათები დინამიურად შეივსება JavaScript-ით -->
+    </div>
+
+    <!-- ცარიელი შედეგის ბლოკი (როდესაც ძიება ვერაფერს იპოვის) -->
+    <div id="empty-state" class="hidden bg-white border border-slate-200/80 rounded-2xl p-10 text-center my-6">
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center text-2xl mb-3">
+        <i class="fa-solid fa-user-slash"></i>
+      </div>
+      <h3 class="font-bold text-slate-800 text-base mb-1">თანამშრომელი ვერ მოიძებნა</h3>
+      <p class="text-xs sm:text-sm text-slate-500">სცადეთ სხვა საძიებო სიტყვა ან გაასუფთავეთ საძიებო ველი.</p>
+    </div>
+
+  </main>
+
+  <!-- მოდალი 1: ახალი თანამშრომლის დამატება (POST მეთოდი) -->
+  <div id="add-modal" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative animate-fade-in my-8">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-user-plus"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-slate-900">თანამშრომლის დამატება</h3>
+            <p class="text-xs text-slate-500">გაგზავნის <span class="text-blue-600 font-bold">POST</span> მოთხოვნას /users ენდფოინთზე</p>
+          </div>
+        </div>
+        <button id="close-add-modal-btn" type="button" class="text-slate-400 hover:text-slate-700 w-8 h-8 rounded-lg flex items-center justify-center hover:bg-slate-100 transition cursor-pointer">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <form id="add-user-form" class="space-y-4 text-xs sm:text-sm">
+        <div>
+          <label for="new-name" class="block font-bold text-slate-700 mb-1">სახელი და გვარი *</label>
+          <input type="text" id="new-name" required placeholder="მაგ. ნინო ბერიძე" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="new-username" class="block font-bold text-slate-700 mb-1">მომხმარებელი (@user) *</label>
+            <input type="text" id="new-username" required placeholder="მაგ. nino.beridze" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+          </div>
+          <div>
+            <label for="new-email" class="block font-bold text-slate-700 mb-1">ელ-ფოსტა *</label>
+            <input type="email" id="new-email" required placeholder="nino@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="new-phone" class="block font-bold text-slate-700 mb-1">ტელეფონი</label>
+            <input type="tel" id="new-phone" placeholder="+995 555 00 11 22" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+          </div>
+          <div>
+            <label for="new-city" class="block font-bold text-slate-700 mb-1">ქალაქი</label>
+            <input type="text" id="new-city" placeholder="თბილისი" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+          </div>
+        </div>
+
+        <div>
+          <label for="new-company" class="block font-bold text-slate-700 mb-1">კომპანია</label>
+          <input type="text" id="new-company" placeholder="GeoLab Tech" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+        </div>
+
+        <div>
+          <label for="new-website" class="block font-bold text-slate-700 mb-1">ვებ-საიტი</label>
+          <input type="text" id="new-website" placeholder="ninodev.ge" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
+          <button type="button" id="cancel-add-btn" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-700 font-semibold hover:bg-slate-50 transition cursor-pointer">
+            გაუქმება
+          </button>
+          <button type="submit" id="submit-add-btn" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold transition shadow-md inline-flex items-center gap-2 cursor-pointer">
+            <i class="fa-solid fa-paper-plane text-xs"></i>
+            <span>დამატება (POST)</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- მოდალი 2: თანამშრომლის დავალებები (GET /users/{id}/todos) -->
+  <div id="todos-modal" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative animate-fade-in my-8 max-h-[90vh] flex flex-col">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-4 shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-list-check"></i>
+          </div>
+          <div>
+            <h3 id="todos-modal-title" class="text-base sm:text-lg font-bold text-slate-900">თანამშრომლის დავალებები</h3>
+            <p id="todos-modal-subtitle" class="text-xs text-slate-500">GET /users/{id}/todos</p>
+          </div>
+        </div>
+        <button id="close-todos-modal-btn" type="button" class="text-slate-400 hover:text-slate-700 w-8 h-8 rounded-lg flex items-center justify-center hover:bg-slate-100 transition cursor-pointer">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div id="todos-list-container" class="overflow-y-auto flex-1 pr-1 space-y-2.5 text-xs sm:text-sm">
+        <!-- დავალებები ჩაიტვირთება დინამიურად -->
+      </div>
+
+      <div class="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs text-slate-500 shrink-0">
+        <span id="todos-summary"></span>
+        <button id="close-todos-modal-btn2" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-semibold transition cursor-pointer">
+          დახურვა
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ტოსტ შეტყობინება (Toast Notification) -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 hidden transform transition-all duration-300">
+    <div class="bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 border border-slate-800 text-xs sm:text-sm max-w-md">
+      <div id="toast-icon" class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <div>
+        <h4 id="toast-title" class="font-bold text-white text-xs sm:text-sm">წარმატება</h4>
+        <p id="toast-body" class="text-slate-300 text-xs mt-0.5">მოქმედება წარმატებით შესრულდა</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- სარდაფი (Footer) -->
+  <footer class="bg-slate-950 text-slate-400 pt-10 sm:pt-14 pb-8 border-t border-slate-800 mt-auto">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pb-10 border-b border-slate-800/80">
+      <div>
+        <div class="flex items-center gap-2.5 text-xl font-bold text-white mb-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white text-sm shadow-md">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <span>საბა<span class="text-blue-500">.dev</span></span>
+        </div>
+        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm mb-4">
+          პერსონალური პორტფოლიო, შექმნილი სუფთა HTML5 სემანტიკური სტანდარტებისა და Tailwind CSS-ის გამოყენებით.
+        </p>
+        <!-- Dribbble Style Social Media Bar -->
+        <div class="flex items-center gap-2.5">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition border border-slate-800" aria-label="GitHub">
+            <i class="fa-brands fa-github text-sm"></i>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition border border-slate-800" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in text-sm"></i>
+          </a>
+          <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-pink-600 text-slate-400 hover:text-white flex items-center justify-center transition border border-slate-800" aria-label="Dribbble">
+            <i class="fa-brands fa-dribbble text-sm"></i>
+          </a>
+          <a href="mailto:saba.amiranashvilite05@geolab.edu.ge" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition border border-slate-800" aria-label="Email">
+            <i class="fa-solid fa-envelope text-sm"></i>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-4">სწრაფი ნავიგაცია</h4>
+        <ul class="space-y-2 text-xs sm:text-sm">
+          <li><a href="index.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>მთავარი გვერდი</a></li>
+          <li><a href="about.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>ჩემ შესახებ</a></li>
+          <li><a href="projects.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>პროექტების კატალოგი</a></li>
+          <li><a href="skills.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>უნარები & ტექნოლოგიები</a></li>
+          <li><a href="team.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>თანამშრომლები</a></li>
+          <li><a href="contact.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>კონტაქტი</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-4">საკონტაქტო მონაცემები</h4>
+        <address class="not-italic text-xs sm:text-sm text-slate-400 space-y-2.5">
+          <p class="flex items-center gap-2.5">
+            <i class="fa-solid fa-location-dot text-blue-400 w-4 text-center"></i> თბილისი, საქართველო
+          </p>
+          <p class="flex items-center gap-2.5">
+            <i class="fa-solid fa-envelope text-blue-400 w-4 text-center"></i> <a href="mailto:saba.amiranashvilite05@geolab.edu.ge" class="hover:text-blue-400 transition break-all">saba.amiranashvilite05@geolab.edu.ge</a>
+          </p>
+          <p class="flex items-center gap-2.5">
+            <i class="fa-solid fa-phone text-blue-400 w-4 text-center"></i> <a href="tel:+995555123456" class="hover:text-blue-400 transition">+995 555 12 34 56</a>
+          </p>
+        </address>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center sm:text-left">
+      <p>&copy; <time datetime="2026">2026</time> საბა. ყველა უფლება დაცულია.</p>
+      <p class="flex items-center justify-center gap-1.5">
+        <span>დამზადებულია</span> <i class="fa-solid fa-heart text-red-500 text-xs"></i> <span>HTML5 & Tailwind CSS-ით</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- JavaScript: მობილური ბურგერ მენიუ & JSONPlaceholder API ინტეგრაცია -->
+  <script>
+    // ==========================================
+    // 1. მობილური ბურგერ მენიუს ლოგიკა
+    // ==========================================
+    const burgerBtn = document.getElementById('burger-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    const openIcon = document.getElementById('burger-open-icon');
+    const closeIcon = document.getElementById('burger-close-icon');
+
+    if (burgerBtn && mobileNav) {
+      burgerBtn.addEventListener('click', () => {
+        const isExpanded = burgerBtn.getAttribute('aria-expanded') === 'true';
+        burgerBtn.setAttribute('aria-expanded', !isExpanded);
+        burgerBtn.setAttribute('aria-label', isExpanded ? 'მენიუს გახსნა' : 'მენიუს დახურვა');
+        mobileNav.classList.toggle('hidden');
+        if (openIcon) openIcon.classList.toggle('hidden');
+        if (closeIcon) closeIcon.classList.toggle('hidden');
+      });
+
+      // კლავიატურის Escape ღილაკით დახურვა
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileNav.classList.contains('hidden')) {
+          burgerBtn.setAttribute('aria-expanded', 'false');
+          burgerBtn.setAttribute('aria-label', 'მენიუს გახსნა');
+          mobileNav.classList.add('hidden');
+          if (openIcon) openIcon.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
+        }
+      });
+
+      // ეკრანის გაფართოებისას მენიუს ავტომატური დახურვა (>= 768px)
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768 && !mobileNav.classList.contains('hidden')) {
+          burgerBtn.setAttribute('aria-expanded', 'false');
+          burgerBtn.setAttribute('aria-label', 'მენიუს გახსნა');
+          mobileNav.classList.add('hidden');
+          if (openIcon) openIcon.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
+        }
+      });
+    }
+
+    // ==========================================
+    // 2. JSONPlaceholder API: თანამშრომლების მართვა
+    // ==========================================
+    const API_URL = 'https://jsonplaceholder.typicode.com/users';
+    let usersList = [];
+
+    const loadingState = document.getElementById('loading-state');
+    const errorState = document.getElementById('error-state');
+    const errorMessage = document.getElementById('error-message');
+    const usersGrid = document.getElementById('users-grid');
+    const emptyState = document.getElementById('empty-state');
+    const userCountEl = document.getElementById('user-count');
+    const searchInput = document.getElementById('search-input');
+    const refreshBtn = document.getElementById('refresh-btn');
+
+    // ტოსტ შეტყობინების ფუნქცია
+    function showToast(title, body, isSuccess = true) {
+      const toast = document.getElementById('toast');
+      const toastTitle = document.getElementById('toast-title');
+      const toastBody = document.getElementById('toast-body');
+      const toastIcon = document.getElementById('toast-icon');
+
+      toastTitle.textContent = title;
+      toastBody.textContent = body;
+
+      if (isSuccess) {
+        toastIcon.className = 'w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0';
+        toastIcon.innerHTML = '<i class="fa-solid fa-check"></i>';
+      } else {
+        toastIcon.className = 'w-8 h-8 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center shrink-0';
+        toastIcon.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>';
+      }
+
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 4000);
+    }
+
+    // გრადიენტის ფერები ავატარისთვის
+    const gradients = [
+      'from-blue-600 to-indigo-600',
+      'from-purple-600 to-pink-600',
+      'from-emerald-500 to-teal-700',
+      'from-amber-500 to-orange-600',
+      'from-cyan-600 to-blue-600',
+      'from-rose-500 to-red-600'
+    ];
+
+    function getGradient(id) {
+      return gradients[(id || 0) % gradients.length];
+    }
+
+    // GET /users: თანამშრომლების წამოღება
+    async function fetchUsers() {
+      loadingState.classList.remove('hidden');
+      errorState.classList.add('hidden');
+      usersGrid.classList.add('hidden');
+      emptyState.classList.add('hidden');
+      userCountEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-blue-600"></i> იტვირთება...';
+
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+          throw new Error(`სერვერის შეცდომა: HTTP ${response.status}`);
+        }
+        const data = await response.json();
+        usersList = data;
+        renderUsers(usersList);
+        showToast('წარმატება (GET 200 OK)', `წარმატებით ჩაიტვირთა ${data.length} თანამშრომელი.`);
+      } catch (err) {
+        loadingState.classList.add('hidden');
+        errorState.classList.remove('hidden');
+        errorMessage.textContent = err.message || 'ვერ მოხერხდა მონაცემების მიღება.';
+        userCountEl.textContent = 'შეცდომა';
+        showToast('შეცდომა', err.message || 'კავშირის შეცდომა', false);
+      }
+    }
+
+    // თანამშრომლების ბარათების რენდერი
+    function renderUsers(users) {
+      loadingState.classList.add('hidden');
+      usersGrid.innerHTML = '';
+
+      if (!users || users.length === 0) {
+        usersGrid.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+        userCountEl.innerHTML = '<i class="fa-solid fa-users text-slate-400"></i> 0 თანამშრომელი';
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      usersGrid.classList.remove('hidden');
+      userCountEl.innerHTML = `<i class="fa-solid fa-users text-blue-600"></i> სულ: ${users.length}`;
+
+      users.forEach((user, index) => {
+        const card = document.createElement('article');
+        card.className = 'bg-white rounded-3xl border border-slate-200/80 p-5 sm:p-6 shadow-xs hover:shadow-xl hover:border-blue-200 transition-all duration-300 flex flex-col justify-between group animate-fade-in relative';
+        card.id = `user-card-${user.id}`;
+
+        const initials = user.name
+          .split(' ')
+          .map(n => n[0])
+          .slice(0, 2)
+          .join('')
+          .toUpperCase();
+
+        const grad = getGradient(user.id || index);
+
+        card.innerHTML = `
+          <div>
+            <!-- ზედა ბლოკი: ავატარი, სახელი, იუზერნეიმი -->
+            <div class="flex items-start justify-between gap-3 mb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr ${grad} text-white font-extrabold flex items-center justify-center text-base shadow-md shrink-0 group-hover:scale-105 transition-transform">
+                  ${initials}
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 text-sm sm:text-base leading-snug group-hover:text-blue-600 transition">
+                    ${user.name}
+                  </h3>
+                  <p class="text-xs text-slate-500 font-medium">@${user.username || 'user'}</p>
+                </div>
+              </div>
+              <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 shrink-0">
+                #${user.id}
+              </span>
+            </div>
+
+            <!-- კომპანიის სლოგანი -->
+            ${user.company?.catchPhrase ? `
+              <div class="mb-4 bg-blue-50/60 border-l-2 border-blue-500 px-3 py-1.5 rounded-r-xl text-[11px] text-blue-900 italic">
+                „${user.company.catchPhrase}“
+              </div>
+            ` : ''}
+
+            <!-- დეტალური რეკვიზიტები -->
+            <ul class="space-y-2 text-xs text-slate-600 mb-5">
+              <li class="flex items-center gap-2.5">
+                <i class="fa-solid fa-building text-slate-400 w-4 text-center"></i>
+                <span class="font-semibold text-slate-800">${user.company?.name || 'კომპანია მითითებული არაა'}</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="fa-solid fa-envelope text-blue-500 w-4 text-center"></i>
+                <a href="mailto:${user.email}" class="hover:text-blue-600 transition truncate">${user.email}</a>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="fa-solid fa-phone text-emerald-500 w-4 text-center"></i>
+                <a href="tel:${user.phone}" class="hover:text-emerald-600 transition">${user.phone || '—'}</a>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="fa-solid fa-location-dot text-rose-500 w-4 text-center"></i>
+                <span class="truncate">${user.address?.city || ''}${user.address?.street ? ', ' + user.address.street : ''}</span>
+              </li>
+              ${user.website ? `
+              <li class="flex items-center gap-2.5">
+                <i class="fa-solid fa-globe text-indigo-500 w-4 text-center"></i>
+                <a href="http://${user.website}" target="_blank" rel="noopener" class="hover:text-indigo-600 transition truncate">${user.website}</a>
+              </li>
+              ` : ''}
+            </ul>
+          </div>
+
+          <!-- ქვედა მოქმედებების პანელი (GET /todos & DELETE მეთოდები) -->
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+            <button 
+              onclick="viewTodos(${user.id}, '${escapeHtml(user.name)}')" 
+              class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white text-xs font-bold transition cursor-pointer"
+            >
+              <i class="fa-solid fa-list-check text-xs"></i>
+              <span>დავალებები</span>
+            </button>
+            <button 
+              onclick="deleteUser(${user.id}, '${escapeHtml(user.name)}')" 
+              class="px-3 py-2 rounded-xl bg-slate-50 hover:bg-rose-50 text-slate-500 hover:text-rose-600 transition text-xs font-bold cursor-pointer" 
+              title="თანამშრომლის წაშლა (DELETE)"
+            >
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+        `;
+
+        usersGrid.appendChild(card);
+      });
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
+    // ძებნის ლოგიკა
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        if (!query) {
+          renderUsers(usersList);
+          return;
+        }
+
+        const filtered = usersList.filter(u => {
+          const name = (u.name || '').toLowerCase();
+          const username = (u.username || '').toLowerCase();
+          const email = (u.email || '').toLowerCase();
+          const company = (u.company?.name || '').toLowerCase();
+          const city = (u.address?.city || '').toLowerCase();
+
+          return name.includes(query) || 
+                 username.includes(query) || 
+                 email.includes(query) || 
+                 company.includes(query) || 
+                 city.includes(query);
+        });
+
+        renderUsers(filtered);
+      });
+    }
+
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', () => {
+        if (searchInput) searchInput.value = '';
+        fetchUsers();
+      });
+    }
+
+    // ==========================================
+    // 3. POST მეთოდი: ახალი თანამშრომლის დამატება
+    // ==========================================
+    const addModal = document.getElementById('add-modal');
+    const openAddModalBtn = document.getElementById('open-add-modal-btn');
+    const closeAddModalBtn = document.getElementById('close-add-modal-btn');
+    const cancelAddBtn = document.getElementById('cancel-add-btn');
+    const addUserForm = document.getElementById('add-user-form');
+    const submitAddBtn = document.getElementById('submit-add-btn');
+
+    function openAddModal() {
+      addModal.classList.remove('hidden');
+      document.getElementById('new-name').focus();
+    }
+
+    function closeAddModal() {
+      addModal.classList.add('hidden');
+      addUserForm.reset();
+    }
+
+    if (openAddModalBtn) openAddModalBtn.addEventListener('click', openAddModal);
+    if (closeAddModalBtn) closeAddModalBtn.addEventListener('click', closeAddModal);
+    if (cancelAddBtn) cancelAddBtn.addEventListener('click', closeAddModal);
+
+    addModal.addEventListener('click', (e) => {
+      if (e.target === addModal) closeAddModal();
+    });
+
+    if (addUserForm) {
+      addUserForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const newUserData = {
+          name: document.getElementById('new-name').value.trim(),
+          username: document.getElementById('new-username').value.trim(),
+          email: document.getElementById('new-email').value.trim(),
+          phone: document.getElementById('new-phone').value.trim() || '+995 555 12 34 56',
+          website: document.getElementById('new-website').value.trim() || 'example.com',
+          address: {
+            city: document.getElementById('new-city').value.trim() || 'თბილისი',
+            street: 'რუსთაველის გამზირი'
+          },
+          company: {
+            name: document.getElementById('new-company').value.trim() || 'Freelance',
+            catchPhrase: 'Clean Code & Innovative UI Design'
+          }
+        };
+
+        submitAddBtn.disabled = true;
+        submitAddBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> იგზავნება...';
+
+        try {
+          // POST მოთხოვნა JSONPlaceholder-ზე
+          const response = await fetch(API_URL, {
+            method: 'POST',
+            body: JSON.stringify(newUserData),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error(`მოთხოვნა ჩაიშალა: HTTP ${response.status}`);
+          }
+
+          const createdUser = await response.json();
+          // JSONPlaceholder ყოველთვის აბრუნებს id: 11-ს
+          createdUser.id = Date.now() % 1000 + 11;
+
+          // ჩავამატოთ სიის დასაწყისში
+          usersList.unshift(createdUser);
+          renderUsers(usersList);
+          closeAddModal();
+
+          showToast('POST 201 Created!', `თანამშრომელი „${createdUser.name}“ წარმატებით დაემატა.`);
+        } catch (err) {
+          showToast('შეცდომა დამატებისას', err.message, false);
+        } finally {
+          submitAddBtn.disabled = false;
+          submitAddBtn.innerHTML = '<i class="fa-solid fa-paper-plane text-xs"></i> <span>დამატება (POST)</span>';
+        }
+      });
+    }
+
+    // ==========================================
+    // 4. GET /users/{id}/todos მეთოდი: დავალებების ნახვა
+    // ==========================================
+    const todosModal = document.getElementById('todos-modal');
+    const closeTodosModalBtn = document.getElementById('close-todos-modal-btn');
+    const closeTodosModalBtn2 = document.getElementById('close-todos-modal-btn2');
+    const todosModalTitle = document.getElementById('todos-modal-title');
+    const todosModalSubtitle = document.getElementById('todos-modal-subtitle');
+    const todosListContainer = document.getElementById('todos-list-container');
+    const todosSummary = document.getElementById('todos-summary');
+
+    function closeTodosModal() {
+      todosModal.classList.add('hidden');
+    }
+
+    if (closeTodosModalBtn) closeTodosModalBtn.addEventListener('click', closeTodosModal);
+    if (closeTodosModalBtn2) closeTodosModalBtn2.addEventListener('click', closeTodosModal);
+    todosModal.addEventListener('click', (e) => {
+      if (e.target === todosModal) closeTodosModal();
+    });
+
+    window.viewTodos = async function(userId, userName) {
+      todosModal.classList.remove('hidden');
+      todosModalTitle.textContent = `${userName} — დავალებები`;
+      todosModalSubtitle.textContent = `GET https://jsonplaceholder.typicode.com/users/${userId}/todos`;
+      todosListContainer.innerHTML = `
+        <div class="py-8 text-center text-slate-500">
+          <i class="fa-solid fa-spinner fa-spin text-2xl text-blue-600 mb-2"></i>
+          <p class="text-xs">დავალებები იტვირთება სერვერიდან...</p>
+        </div>
+      `;
+      todosSummary.textContent = '';
+
+      try {
+        const res = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}/todos`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const todos = await res.json();
+
+        if (todos.length === 0) {
+          todosListContainer.innerHTML = `
+            <div class="py-6 text-center text-slate-500">
+              <i class="fa-solid fa-check-double text-2xl text-emerald-500 mb-2"></i>
+              <p>ამ თანამშრომელს მიმდინარე დავალებები არ აქვს.</p>
+            </div>
+          `;
+          return;
+        }
+
+        const completedCount = todos.filter(t => t.completed).length;
+        todosSummary.innerHTML = `შესრულებულია: <strong class="text-emerald-600 font-bold">${completedCount}</strong> / ${todos.length}`;
+
+        todosListContainer.innerHTML = todos.map(t => `
+          <div class="p-3 rounded-xl border ${t.completed ? 'bg-emerald-50/50 border-emerald-200/80 text-emerald-900' : 'bg-slate-50 border-slate-200 text-slate-800'} flex items-start gap-2.5">
+            <span class="mt-0.5 ${t.completed ? 'text-emerald-600' : 'text-slate-400'}">
+              <i class="fa-solid ${t.completed ? 'fa-circle-check' : 'fa-circle'} text-sm"></i>
+            </span>
+            <span class="flex-1 text-xs sm:text-sm ${t.completed ? 'line-through text-slate-500' : 'font-medium'}">${t.title}</span>
+          </div>
+        `).join('');
+
+      } catch (err) {
+        todosListContainer.innerHTML = `
+          <div class="p-4 bg-rose-50 text-rose-700 rounded-xl text-center text-xs">
+            <i class="fa-solid fa-circle-exclamation text-rose-500 text-base mb-1"></i>
+            <p>დავალებების ჩატვირთვა ვერ მოხერხდა: ${err.message}</p>
+          </div>
+        `;
+      }
+    };
+
+    // ==========================================
+    // 5. DELETE მეთოდი: თანამშრომლის წაშლა
+    // ==========================================
+    window.deleteUser = async function(userId, userName) {
+      if (!confirm(`ნამდვილად გსურთ თანამშრომლის „${userName}“ წაშლა?`)) {
+        return;
+      }
+
+      try {
+        const res = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`, {
+          method: 'DELETE',
+        });
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        // ამოვშალოთ სიიდან
+        usersList = usersList.filter(u => u.id !== userId);
+        const card = document.getElementById(`user-card-${userId}`);
+        if (card) {
+          card.style.transition = 'all 0.3s ease';
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.9)';
+          setTimeout(() => {
+            renderUsers(usersList);
+          }, 300);
+        } else {
+          renderUsers(usersList);
+        }
+
+        showToast('DELETE 200 OK', `თანამშრომელი „${userName}“ წაიშალა.`);
+      } catch (err) {
+        showToast('წაშლის შეცდომა', err.message, false);
+      }
+    };
+
+    // Escape ღილაკით მოდალების დახურვა
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (!addModal.classList.contains('hidden')) closeAddModal();
+        if (!todosModal.classList.contains('hidden')) closeTodosModal();
+      }
+    });
+
+    // გვერდის ჩატვირთვისას წამოვიღოთ თანამშრომლები
+    fetchUsers();
+  </script>
+
+</body>
+</html>

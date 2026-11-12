@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ka" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ჩემი პროექტები - ვებ-დეველოპმენტის პორტფოლიო">
+  <title>პროექტები | ჩემი პორტფოლიო</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.5.1 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Lordicon Player -->
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased">
+
+  <!-- ზედა პანელი და სემანტიკური ნავიგაცია -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- ლოგო -->
+        <a href="index.html" class="flex items-center gap-2.5 text-xl font-extrabold text-blue-600 tracking-tight hover:opacity-90 transition">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center text-sm shadow-md shadow-blue-500/25">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <span>საბა<span class="text-slate-900">.dev</span></span>
+        </a>
+
+        <!-- დესკტოპ ნავიგაცია -->
+        <nav aria-label="მთავარი ნავიგაცია" class="hidden md:block">
+          <ul class="flex items-center gap-1 lg:gap-2 text-sm font-semibold">
+            <li>
+              <a href="index.html" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50/70 transition">
+                <i class="fa-solid fa-house text-xs"></i>
+                <span>მთავარი</span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50/70 transition">
+                <i class="fa-solid fa-user text-xs"></i>
+                <span>ჩემ შესახებ</span>
+              </a>
+            </li>
+            <li>
+              <a href="projects.html" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-blue-600 text-white shadow-sm shadow-blue-500/25 transition">
+                <i class="fa-solid fa-diagram-project text-xs"></i>
+                <span>პროექტები</span>
+              </a>
+            </li>
+            <li>
+              <a href="skills.html" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50/70 transition">
+                <i class="fa-solid fa-screwdriver-wrench text-xs"></i>
+                <span>უნარები</span>
+              </a>
+            </li>
+            <li>
+              <a href="team.html" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50/70 transition">
+                <i class="fa-solid fa-users text-xs"></i>
+                <span>თანამშრომლები</span>
+              </a>
+            </li>
+            <li>
+              <a href="contact.html" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50/70 transition">
+                <i class="fa-regular fa-paper-plane text-xs"></i>
+                <span>კონტაქტი</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- ბურგერ მენიუს ღილაკი მობილურისთვის -->
+        <button id="burger-btn" type="button" aria-label="მენიუს გახსნა" aria-expanded="false" aria-controls="mobile-nav" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition cursor-pointer">
+          <!-- ბურგერის აიქონი (3 ხაზი) -->
+          <svg id="burger-open-icon" class="w-6 h-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <!-- დახურვის აიქონი (X) -->
+          <svg id="burger-close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- მობილური ჩამოსაშლელი მენიუ -->
+      <nav id="mobile-nav" aria-label="მობილური ნავიგაცია" class="hidden md:hidden border-t border-slate-100 py-3.5">
+        <ul class="flex flex-col gap-1.5 text-sm font-semibold">
+          <li>
+            <a href="index.html" class="flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50/70 transition">
+              <span class="inline-flex items-center gap-2.5">
+                <i class="fa-solid fa-house text-slate-400 w-4"></i>
+                <span>მთავარი</span>
+              </span>
+              <i class="fa-solid fa-angle-right text-xs text-slate-400"></i>
+            </a>
+          </li>
+          <li>
+            <a href="about.html" class="flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50/70 transition">
+              <span class="inline-flex items-center gap-2.5">
+                <i class="fa-solid fa-user text-slate-400 w-4"></i>
+                <span>ჩემ შესახებ</span>
+              </span>
+              <i class="fa-solid fa-angle-right text-xs text-slate-400"></i>
+            </a>
+          </li>
+          <li>
+            <a href="projects.html" class="flex items-center justify-between px-4 py-3 rounded-xl bg-blue-600 text-white shadow-sm shadow-blue-500/25 transition">
+              <span class="inline-flex items-center gap-2.5">
+                <i class="fa-solid fa-diagram-project w-4"></i>
+                <span>პროექტები</span>
+              </span>
+              <i class="fa-solid fa-angle-right text-xs"></i>
+            </a>
+          </li>
+          <li>
+            <a href="skills.html" class="flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50/70 transition">
+              <span class="inline-flex items-center gap-2.5">
+                <i class="fa-solid fa-screwdriver-wrench text-slate-400 w-4"></i>
+                <span>უნარები</span>
+              </span>
+              <i class="fa-solid fa-angle-right text-xs text-slate-400"></i>
+            </a>
+          </li>
+          <li>
+            <a href="team.html" class="flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50/70 transition">
+              <span class="inline-flex items-center gap-2.5">
+                <i class="fa-solid fa-users text-slate-400 w-4"></i>
+                <span>თანამშრომლები</span>
+              </span>
+              <i class="fa-solid fa-angle-right text-xs text-slate-400"></i>
+            </a>
+          </li>
+          <li>
+            <a href="contact.html" class="flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50/70 transition">
+              <span class="inline-flex items-center gap-2.5">
+                <i class="fa-regular fa-paper-plane text-slate-400 w-4"></i>
+                <span>კონტაქტი</span>
+              </span>
+              <i class="fa-solid fa-angle-right text-xs text-slate-400"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ძირითადი შიგთავსი -->
+  <main class="flex-1 max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-12 w-full">
+
+    <!-- გვერდის სათაური -->
+    <div class="mb-8 sm:mb-10 pb-5 sm:pb-6 border-b border-slate-200">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-2">ჩემი პროექტები</h1>
+      <p class="text-slate-500 text-sm sm:text-base">ვებ-გვერდებისა და ინტერფეისების სრული კოლექცია, შექმნილი სემანტიკური სტანდარტების დაცვით</p>
+    </div>
+
+    <!-- პროექტების სია -->
+    <section class="space-y-8 sm:space-y-10 mb-14 sm:mb-16">
+
+      <!-- პროექტი 1 -->
+      <article id="proj1" class="grid grid-cols-1 lg:grid-cols-12 bg-white rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-blue-200 transition-all duration-300 overflow-hidden group">
+        <figure class="lg:col-span-5 relative overflow-hidden bg-slate-100 h-52 sm:h-64 lg:h-auto min-h-[200px] sm:min-h-[260px]">
+          <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=700&q=80" alt="სასკოლო ელექტრონული ბიბლიოთეკა" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <figcaption class="absolute bottom-0 inset-x-0 bg-slate-950/80 backdrop-blur-xs text-white text-xs py-1.5 px-4 text-center font-medium">
+            სასკოლო ელექტრონული ბიბლიოთეკის ინტერფეისი
+          </figcaption>
+        </figure>
+
+        <div class="lg:col-span-7 p-5 sm:p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3 mb-3">
+              <h2 class="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition">
+                სასკოლო ელექტრონული ბიბლიოთეკა
+              </h2>
+              <time datetime="2026-02" class="self-start sm:self-auto text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+                თებერვალი 2026
+              </time>
+            </div>
+
+            <p class="text-slate-600 text-xs sm:text-base leading-relaxed mb-5 sm:mb-6">
+              ონლაინ კატალოგი, რომელიც სკოლის მოსწავლეებსა და მასწავლებლებს ეხმარება წიგნების მოძიებაში,
+              ავტორების მიხედვით დახარისხებასა და ონლაინ რეჟიმში დაჯავშნაში. პროექტი სრულად აგებულია
+              სემანტიკური ცხრილებით, ფორმებითა და საძიებო ველებით.
+            </p>
+
+            <div class="mb-5 sm:mb-6">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 sm:mb-2.5">გამოყენებული ტექნოლოგიები:</h4>
+              <ul class="flex flex-wrap gap-1.5 sm:gap-2">
+                <li class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-lg border border-blue-100">
+                  HTML5 Semantic Elements
+                </li>
+                <li class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-lg border border-blue-100">
+                  Tailwind CSS Flex & Grid
+                </li>
+                <li class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-lg border border-blue-100">
+                  Accessibility (A11y)
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-4 border-t border-slate-100">
+            <a href="#" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs sm:text-sm hover:bg-blue-700 transition shadow-xs">
+              <span>ცოცხალი დემო</span>
+              <span>&rarr;</span>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-semibold text-xs sm:text-sm hover:bg-slate-200 transition">
+              <span>GitHub კოდი</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- პროექტი 2 -->
+      <article id="proj2" class="grid grid-cols-1 lg:grid-cols-12 bg-white rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-indigo-200 transition-all duration-300 overflow-hidden group">
+        <figure class="lg:col-span-5 relative overflow-hidden bg-slate-100 h-52 sm:h-64 lg:h-auto min-h-[200px] sm:min-h-[260px]">
+          <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=700&q=80" alt="პირადი ბლოგი და პორტფოლიო" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <figcaption class="absolute bottom-0 inset-x-0 bg-slate-950/80 backdrop-blur-xs text-white text-xs py-1.5 px-4 text-center font-medium">
+            პერსონალური მრავალგვერდიანი ბლოგი
+          </figcaption>
+        </figure>
+
+        <div class="lg:col-span-7 p-5 sm:p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3 mb-3">
+              <h2 class="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 group-hover:text-indigo-600 transition">
+                პირადი ბლოგი & პორტფოლიო
+              </h2>
+              <time datetime="2026-01" class="self-start sm:self-auto text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+                იანვარი 2026
+              </time>
+            </div>
+
+            <p class="text-slate-600 text-xs sm:text-base leading-relaxed mb-5 sm:mb-6">
+              დამოუკიდებელი მრავალგვერდიანი საიტი, სადაც წარმოდგენილია დეველოპერის სტატიები,
+              პროექტების მიმოხილვა და საკონტაქტო ფორმა. გვერდებს შორის ნავიგაცია სრულად ხორციელდება
+              სუფთა შიდა ჰიპერბმულებით.
+            </p>
+
+            <div class="mb-5 sm:mb-6">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 sm:mb-2.5">გამოყენებული ტექნოლოგიები:</h4>
+              <ul class="flex flex-wrap gap-1.5 sm:gap-2">
+                <li class="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-lg border border-indigo-100">
+                  HTML5 Multi-page
+                </li>
+                <li class="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-lg border border-indigo-100">
+                  Responsive Navigation
+                </li>
+                <li class="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-lg border border-indigo-100">
+                  Tailwind CSS Utility
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-4 border-t border-slate-100">
+            <a href="#" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold text-xs sm:text-sm hover:bg-indigo-700 transition shadow-xs">
+              <span>ცოცხალი დემო</span>
+              <span>&rarr;</span>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-semibold text-xs sm:text-sm hover:bg-slate-200 transition">
+              <span>GitHub კოდი</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- პროექტი 3 -->
+      <article id="proj3" class="grid grid-cols-1 lg:grid-cols-12 bg-white rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-cyan-200 transition-all duration-300 overflow-hidden group">
+        <figure class="lg:col-span-5 relative overflow-hidden bg-slate-100 h-52 sm:h-64 lg:h-auto min-h-[200px] sm:min-h-[260px]">
+          <img src="https://images.unsplash.com/photo-1592210454359-9043f067919b?auto=format&fit=crop&w=700&q=80" alt="ამინდის საინფორმაციო ბარათი" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <figcaption class="absolute bottom-0 inset-x-0 bg-slate-950/80 backdrop-blur-xs text-white text-xs py-1.5 px-4 text-center font-medium">
+            ამინდისა და კლიმატის მონიტორინგის ბარათი
+          </figcaption>
+        </figure>
+
+        <div class="lg:col-span-7 p-5 sm:p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3 mb-3">
+              <h2 class="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 group-hover:text-cyan-600 transition">
+                ამინდის საინფორმაციო ბარათი
+              </h2>
+              <time datetime="2025-12" class="self-start sm:self-auto text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+                დეკემბერი 2025
+              </time>
+            </div>
+
+            <p class="text-slate-600 text-xs sm:text-base leading-relaxed mb-5 sm:mb-6">
+              ინფორმაციული და ვიზუალურად გამართული ამინდის ბარათი, რომელიც აჩვენებს საქართველოს ქალაქების
+              ამინდის პროგნოზს, ქარის სიჩქარესა და ატმოსფერულ წნევას.
+            </p>
+
+            <div class="mb-5 sm:mb-6">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 sm:mb-2.5">გამოყენებული ტექნოლოგიები:</h4>
+              <ul class="flex flex-wrap gap-1.5 sm:gap-2">
+                <li class="bg-cyan-50 text-cyan-700 text-xs font-bold px-3 py-1 rounded-lg border border-cyan-100">
+                  Semantic Sections
+                </li>
+                <li class="bg-cyan-50 text-cyan-700 text-xs font-bold px-3 py-1 rounded-lg border border-cyan-100">
+                  Tailwind CSS Cards
+                </li>
+                <li class="bg-cyan-50 text-cyan-700 text-xs font-bold px-3 py-1 rounded-lg border border-cyan-100">
+                  Mobile Responsive
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-4 border-t border-slate-100">
+            <a href="#" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-600 text-white font-semibold text-xs sm:text-sm hover:bg-cyan-700 transition shadow-xs">
+              <span>ცოცხალი დემო</span>
+              <span>&rarr;</span>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-semibold text-xs sm:text-sm hover:bg-slate-200 transition">
+              <span>GitHub კოდი</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- პროექტების შემაჯამებელი ცხრილი -->
+    <section>
+      <div class="mb-4 sm:mb-6 flex items-end justify-between gap-3">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">პროექტების შემაჯამებელი რეზიუმე</h2>
+          <p class="text-slate-500 text-xs sm:text-sm mt-1">შექმნილი პროექტების ტექნიკური სტატისტიკა და გამოყენებული თეგები</p>
+        </div>
+        <span class="inline-flex sm:hidden items-center gap-1 text-[11px] font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md shrink-0">
+          <span>გადაფურცლეთ</span> <span>&harr;</span>
+        </span>
+      </div>
+
+      <div class="overflow-x-auto bg-white rounded-2xl border border-slate-200/80 shadow-xs">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[580px]">
+          <caption class="sr-only">შექმნილი პროექტების ტექნიკური სტატისტიკა</caption>
+          <thead>
+            <tr class="bg-slate-100/70 border-b border-slate-200 text-slate-700 font-bold uppercase text-[11px] sm:text-xs tracking-wider">
+              <th scope="col" class="py-3.5 px-4 sm:py-4 sm:px-6">პროექტის სახელი</th>
+              <th scope="col" class="py-3.5 px-4 sm:py-4 sm:px-6">ტიპი</th>
+              <th scope="col" class="py-3.5 px-4 sm:py-4 sm:px-6">თარიღი</th>
+              <th scope="col" class="py-3.5 px-4 sm:py-4 sm:px-6">ძირითადი თეგები</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr class="hover:bg-slate-50/80 transition">
+              <td class="py-3.5 px-4 sm:py-4 sm:px-6 font-bold text-slate-900">სასკოლო ბიბლიოთეკა</td>
+              <td class="py-3.5 px-4 sm:py-4 sm:px-6 text-slate-600">ვებ-აპლიკაციის ინტერფეისი</td>
+              <td class="py-3.5 px-4 sm:py-4 sm:px-6 font-semibold text-slate-600 whitespace-nowrap">
+                <time datetime="2026-02">2026 წლის თებერვალი</time>
+              </td>
+              <td class="py-3.5 px-4 sm:py-4 sm:px-6 text-slate-600">
+                <code class="bg-slate-100 text-blue-600 px-1.5 py-0.5 rounded text-[11px]">&lt;table&gt;</code>,
+                <code class="bg-slate-100 text-blue-600 px-1.5 py-0.5 rounded text-[11px]">&lt;form&gt;</code>,
+                <code class="bg-slate-100 text-blue-600 px-1.5 py-0.5 rounded text-[11px]">&lt;article&gt;</code>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50/80 transition">
+              <td class="py-3.5 px-4 sm:py-4 sm:px-6 font-bold text-slate-900">პირადი ბლოგი & პორტფოლიო</td>
+              <td class="py-3.5 px-4 sm:py-4 sm:px-6 text-slate-600">მრავალგვერდიანი საიტი</td>
+              <td class="py-3.5 px-4 sm:py-4 sm:px-6 font-semibold text-slate-600 whitespace-nowrap">
+                <time datetime="2026-01">2026 წლის იანვარი</time>
+              </td>
+              <td class="py-3.5 px-4 sm:py-4 sm:px-6 text-slate-600">
+                <code class="bg-slate-100 text-indigo-600 px-1.5 py-0.5 rounded text-[11px]">&lt;header&gt;</code>,
+                <code class="bg-slate-100 text-indigo-600 px-1.5 py-0.5 rounded text-[11px]">&lt;nav&gt;</code>,
+                <code class="bg-slate-100 text-indigo-600 px-1.5 py-0.5 rounded text-[11px]">&lt;main&gt;</code>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50/80 transition">
+              <td class="py-3.5 px-4 sm:py-4 sm:px-6 font-bold text-slate-900">ამინდის საინფორმაციო ბარათი</td>
+              <td class="py-3.5 px-4 sm:py-4 sm:px-6 text-slate-600">ვიჯეტი / Dashboard</td>
+              <td class="py-3.5 px-4 sm:py-4 sm:px-6 font-semibold text-slate-600 whitespace-nowrap">
+                <time datetime="2025-12">2025 წლის დეკემბერი</time>
+              </td>
+              <td class="py-3.5 px-4 sm:py-4 sm:px-6 text-slate-600">
+                <code class="bg-slate-100 text-cyan-600 px-1.5 py-0.5 rounded text-[11px]">&lt;figure&gt;</code>,
+                <code class="bg-slate-100 text-cyan-600 px-1.5 py-0.5 rounded text-[11px]">&lt;section&gt;</code>,
+                <code class="bg-slate-100 text-cyan-600 px-1.5 py-0.5 rounded text-[11px]">&lt;time&gt;</code>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- სარდაფი -->
+  <footer class="bg-slate-950 text-slate-400 pt-10 sm:pt-14 pb-8 border-t border-slate-800 mt-auto">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pb-10 border-b border-slate-800/80">
+      <div>
+        <div class="flex items-center gap-2.5 text-xl font-bold text-white mb-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white text-sm shadow-md">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <span>საბა<span class="text-blue-500">.dev</span></span>
+        </div>
+        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm mb-4">
+          პერსონალური პორტფოლიო, შექმნილი სუფთა HTML5 სემანტიკური სტანდარტებისა და Tailwind CSS-ის გამოყენებით.
+        </p>
+        <!-- Dribbble Style Social Media Bar -->
+        <div class="flex items-center gap-2.5">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition border border-slate-800" aria-label="GitHub">
+            <i class="fa-brands fa-github text-sm"></i>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition border border-slate-800" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in text-sm"></i>
+          </a>
+          <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-pink-600 text-slate-400 hover:text-white flex items-center justify-center transition border border-slate-800" aria-label="Dribbble">
+            <i class="fa-brands fa-dribbble text-sm"></i>
+          </a>
+          <a href="mailto:saba.amiranashvilite05@geolab.edu.ge" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition border border-slate-800" aria-label="Email">
+            <i class="fa-solid fa-envelope text-sm"></i>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-4">სწრაფი ნავიგაცია</h4>
+        <ul class="space-y-2 text-xs sm:text-sm">
+          <li><a href="index.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>მთავარი გვერდი</a></li>
+          <li><a href="about.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>ჩემ შესახებ</a></li>
+          <li><a href="projects.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>პროექტების კატალოგი</a></li>
+          <li><a href="skills.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>უნარები & ტექნოლოგიები</a></li>
+          <li><a href="team.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>თანამშრომლები</a></li>
+          <li><a href="contact.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>კონტაქტი</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-4">საკონტაქტო მონაცემები</h4>
+        <address class="not-italic text-xs sm:text-sm text-slate-400 space-y-2.5">
+          <p class="flex items-center gap-2.5">
+            <i class="fa-solid fa-location-dot text-blue-400 w-4 text-center"></i> თბილისი, საქართველო
+          </p>
+          <p class="flex items-center gap-2.5">
+            <i class="fa-solid fa-envelope text-blue-400 w-4 text-center"></i> <a href="mailto:saba.amiranashvilite05@geolab.edu.ge" class="hover:text-blue-400 transition break-all">saba.amiranashvilite05@geolab.edu.ge</a>
+          </p>
+          <p class="flex items-center gap-2.5">
+            <i class="fa-solid fa-phone text-blue-400 w-4 text-center"></i> <a href="tel:+995555123456" class="hover:text-blue-400 transition">+995 555 12 34 56</a>
+          </p>
+        </address>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center sm:text-left">
+      <p>&copy; <time datetime="2026">2026</time> საბა. ყველა უფლება დაცულია.</p>
+      <p class="flex items-center justify-center gap-1.5">
+        <span>დამზადებულია</span> <i class="fa-solid fa-heart text-red-500 text-xs"></i> <span>HTML5 & Tailwind CSS-ით</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- მობილური ბურგერ მენიუს სკრიპტი -->
+  <script>
+    const burgerBtn = document.getElementById('burger-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    const openIcon = document.getElementById('burger-open-icon');
+    const closeIcon = document.getElementById('burger-close-icon');
+
+    if (burgerBtn && mobileNav) {
+      burgerBtn.addEventListener('click', () => {
+        const isExpanded = burgerBtn.getAttribute('aria-expanded') === 'true';
+        burgerBtn.setAttribute('aria-expanded', !isExpanded);
+        burgerBtn.setAttribute('aria-label', isExpanded ? 'მენიუს გახსნა' : 'მენიუს დახურვა');
+        mobileNav.classList.toggle('hidden');
+        openIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileNav.classList.contains('hidden')) {
+          burgerBtn.setAttribute('aria-expanded', 'false');
+          burgerBtn.setAttribute('aria-label', 'მენიუს გახსნა');
+          mobileNav.classList.add('hidden');
+          openIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768 && !mobileNav.classList.contains('hidden')) {
+          burgerBtn.setAttribute('aria-expanded', 'false');
+          burgerBtn.setAttribute('aria-label', 'მენიუს გახსნა');
+          mobileNav.classList.add('hidden');
+          openIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

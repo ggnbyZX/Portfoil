@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ka" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="კონტაქტი - დამიკავშირდით თანამშრომლობისთვის">
+  <title>კონტაქტი | ჩემი პორტფოლიო</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.5.1 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Lordicon Player -->
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased">
+
+  <!-- ზედა პანელი და სემანტიკური ნავიგაცია -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- ლოგო -->
+        <a href="index.html" class="flex items-center gap-2.5 text-xl font-extrabold text-blue-600 tracking-tight hover:opacity-90 transition">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center text-sm shadow-md shadow-blue-500/25">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <span>საბა<span class="text-slate-900">.dev</span></span>
+        </a>
+
+        <!-- დესკტოპ ნავიგაცია -->
+        <nav aria-label="მთავარი ნავიგაცია" class="hidden md:block">
+          <ul class="flex items-center gap-1 lg:gap-2 text-sm font-semibold">
+            <li>
+              <a href="index.html" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50/70 transition">
+                <i class="fa-solid fa-house text-xs"></i>
+                <span>მთავარი</span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50/70 transition">
+                <i class="fa-solid fa-user text-xs"></i>
+                <span>ჩემ შესახებ</span>
+              </a>
+            </li>
+            <li>
+              <a href="projects.html" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50/70 transition">
+                <i class="fa-solid fa-diagram-project text-xs"></i>
+                <span>პროექტები</span>
+              </a>
+            </li>
+            <li>
+              <a href="skills.html" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50/70 transition">
+                <i class="fa-solid fa-screwdriver-wrench text-xs"></i>
+                <span>უნარები</span>
+              </a>
+            </li>
+            <li>
+              <a href="team.html" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-blue-50/70 transition">
+                <i class="fa-solid fa-users text-xs"></i>
+                <span>თანამშრომლები</span>
+              </a>
+            </li>
+            <li>
+              <a href="contact.html" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-blue-600 text-white shadow-sm shadow-blue-500/25 transition">
+                <i class="fa-regular fa-paper-plane text-xs"></i>
+                <span>კონტაქტი</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- ბურგერ მენიუს ღილაკი მობილურისთვის -->
+        <button id="burger-btn" type="button" aria-label="მენიუს გახსნა" aria-expanded="false" aria-controls="mobile-nav" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition cursor-pointer">
+          <!-- ბურგერის აიქონი (3 ხაზი) -->
+          <svg id="burger-open-icon" class="w-6 h-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <!-- დახურვის აიქონი (X) -->
+          <svg id="burger-close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- მობილური ჩამოსაშლელი მენიუ -->
+      <nav id="mobile-nav" aria-label="მობილური ნავიგაცია" class="hidden md:hidden border-t border-slate-100 py-3.5">
+        <ul class="flex flex-col gap-1.5 text-sm font-semibold">
+          <li>
+            <a href="index.html" class="flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50/70 transition">
+              <span class="inline-flex items-center gap-2.5">
+                <i class="fa-solid fa-house text-slate-400 w-4"></i>
+                <span>მთავარი</span>
+              </span>
+              <i class="fa-solid fa-angle-right text-xs text-slate-400"></i>
+            </a>
+          </li>
+          <li>
+            <a href="about.html" class="flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50/70 transition">
+              <span class="inline-flex items-center gap-2.5">
+                <i class="fa-solid fa-user text-slate-400 w-4"></i>
+                <span>ჩემ შესახებ</span>
+              </span>
+              <i class="fa-solid fa-angle-right text-xs text-slate-400"></i>
+            </a>
+          </li>
+          <li>
+            <a href="projects.html" class="flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50/70 transition">
+              <span class="inline-flex items-center gap-2.5">
+                <i class="fa-solid fa-diagram-project text-slate-400 w-4"></i>
+                <span>პროექტები</span>
+              </span>
+              <i class="fa-solid fa-angle-right text-xs text-slate-400"></i>
+            </a>
+          </li>
+          <li>
+            <a href="skills.html" class="flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50/70 transition">
+              <span class="inline-flex items-center gap-2.5">
+                <i class="fa-solid fa-screwdriver-wrench text-slate-400 w-4"></i>
+                <span>უნარები</span>
+              </span>
+              <i class="fa-solid fa-angle-right text-xs text-slate-400"></i>
+            </a>
+          </li>
+          <li>
+            <a href="team.html" class="flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50/70 transition">
+              <span class="inline-flex items-center gap-2.5">
+                <i class="fa-solid fa-users text-slate-400 w-4"></i>
+                <span>თანამშრომლები</span>
+              </span>
+              <i class="fa-solid fa-angle-right text-xs text-slate-400"></i>
+            </a>
+          </li>
+          <li>
+            <a href="contact.html" class="flex items-center justify-between px-4 py-3 rounded-xl bg-blue-600 text-white shadow-sm shadow-blue-500/25 transition">
+              <span class="inline-flex items-center gap-2.5">
+                <i class="fa-regular fa-paper-plane w-4"></i>
+                <span>კონტაქტი</span>
+              </span>
+              <i class="fa-solid fa-angle-right text-xs"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ძირითადი შიგთავსი -->
+  <main class="flex-1 max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-12 w-full">
+
+    <!-- გვერდის სათაური -->
+    <div class="mb-8 sm:mb-10 pb-5 sm:pb-6 border-b border-slate-200">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-2">კონტაქტი</h1>
+      <p class="text-slate-500 text-sm sm:text-base">დამიკავშირდით თანამშრომლობისთვის, კითხვებისთვის ან ახალი იდეების განსახილველად</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start mb-12 sm:mb-16">
+
+      <!-- საკონტაქტო რეკვიზიტები (Aside) -->
+      <aside class="lg:col-span-5 bg-white rounded-3xl border border-slate-200/80 p-5 sm:p-8 shadow-xs">
+        <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-2">საკონტაქტო ინფორმაცია</h3>
+        <p class="text-slate-500 text-xs sm:text-sm leading-relaxed mb-6">
+          ყოველთვის ღია ვარ საინტერესო პროექტებისა და პროფესიული თანამშრომლობისთვის.
+        </p>
+
+        <address class="not-italic space-y-3.5 sm:space-y-4 mb-6 sm:mb-8">
+          <div class="flex items-start gap-3.5 sm:gap-4 p-3 sm:p-3.5 rounded-2xl bg-slate-50 hover:bg-blue-50/60 transition">
+            <span class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-base shrink-0">
+              <i class="fa-solid fa-location-dot"></i>
+            </span>
+            <div>
+              <strong class="block text-[11px] sm:text-xs font-bold uppercase text-slate-400">მისამართი</strong>
+              <span class="text-slate-800 text-xs sm:text-sm font-semibold">თბილისი, საქართველო</span>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3.5 sm:gap-4 p-3 sm:p-3.5 rounded-2xl bg-slate-50 hover:bg-blue-50/60 transition">
+            <span class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-base shrink-0">
+              <i class="fa-solid fa-envelope"></i>
+            </span>
+            <div class="min-w-0 flex-1">
+              <strong class="block text-[11px] sm:text-xs font-bold uppercase text-slate-400">ელექტრონული ფოსტა</strong>
+              <a href="mailto:saba.amiranashvilite05@geolab.edu.ge" class="text-blue-600 text-xs sm:text-sm font-semibold hover:underline break-all">saba.amiranashvilite05@geolab.edu.ge</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3.5 sm:gap-4 p-3 sm:p-3.5 rounded-2xl bg-slate-50 hover:bg-blue-50/60 transition">
+            <span class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-base shrink-0">
+              <i class="fa-solid fa-phone"></i>
+            </span>
+            <div>
+              <strong class="block text-[11px] sm:text-xs font-bold uppercase text-slate-400">ტელეფონის ნომერი</strong>
+              <a href="tel:+995555123456" class="text-blue-600 text-xs sm:text-sm font-semibold hover:underline">+995 555 12 34 56</a>
+            </div>
+          </div>
+        </address>
+
+        <div class="bg-gradient-to-br from-blue-50 to-indigo-50/50 border border-blue-100 rounded-2xl p-4 sm:p-5">
+          <h4 class="font-bold text-slate-900 text-xs sm:text-sm mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-clock text-blue-600"></i>
+            <span>სამუშაო საათები:</span>
+          </h4>
+          <p class="text-slate-600 text-xs sm:text-sm flex justify-between py-1 border-b border-blue-100/60">
+            <span>ორშაბათი - პარასკევი:</span>
+            <span class="font-bold text-slate-800"><time>09:00</time> - <time>18:00</time></span>
+          </p>
+          <p class="text-slate-600 text-xs sm:text-sm flex justify-between py-1 pt-1.5">
+            <span>შაბათი:</span>
+            <span class="font-bold text-slate-800"><time>10:00</time> - <time>15:00</time></span>
+          </p>
+        </div>
+      </aside>
+
+      <!-- სემანტიკური ფორმა (Section) -->
+      <section class="lg:col-span-7">
+        <form action="#" method="post" class="bg-white rounded-3xl border border-slate-200/80 p-5 sm:p-8 shadow-xs space-y-5 sm:space-y-6">
+
+          <!-- პერსონალური მონაცემების ჯგუფი -->
+          <fieldset class="border border-slate-200 rounded-2xl p-4 sm:p-6">
+            <legend class="text-xs font-bold uppercase tracking-wider text-blue-600 px-3 bg-white inline-flex items-center gap-1.5">
+              <i class="fa-regular fa-user"></i>
+              <span>1. პერსონალური მონაცემები</span>
+            </legend>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label for="fullname" class="block text-xs font-bold text-slate-700 mb-1.5">
+                  სრული სახელი <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="fullname" name="fullname" required placeholder="მაგ: გიორგი ბერიძე" class="w-full px-3.5 sm:px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-slate-50/50">
+              </div>
+
+              <div>
+                <label for="email" class="block text-xs font-bold text-slate-700 mb-1.5">
+                  ელ. ფოსტა <span class="text-red-500">*</span>
+                </label>
+                <input type="email" id="email" name="email" required placeholder="example@mail.com" class="w-full px-3.5 sm:px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-slate-50/50">
+              </div>
+            </div>
+
+            <div>
+              <label for="phone" class="block text-xs font-bold text-slate-700 mb-1.5">
+                ტელეფონი (არასავალდებულო)
+              </label>
+              <input type="tel" id="phone" name="phone" placeholder="+995 5XX XX XX XX" class="w-full px-3.5 sm:px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-slate-50/50">
+            </div>
+          </fieldset>
+
+          <!-- შეტყობინების დეტალების ჯგუფი -->
+          <fieldset class="border border-slate-200 rounded-2xl p-4 sm:p-6">
+            <legend class="text-xs font-bold uppercase tracking-wider text-blue-600 px-3 bg-white inline-flex items-center gap-1.5">
+              <i class="fa-regular fa-comment-dots"></i>
+              <span>2. შეტყობინების დეტალები</span>
+            </legend>
+
+            <div class="mb-4">
+              <label for="subject" class="block text-xs font-bold text-slate-700 mb-1.5">
+                თემატიკა <span class="text-red-500">*</span>
+              </label>
+              <select id="subject" name="subject" required class="w-full px-3.5 sm:px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-slate-50/50">
+                <option value="" disabled selected>აირჩიეთ თემა...</option>
+                <optgroup label="თანამშრომლობა">
+                  <option value="freelance">ახალი პროექტის შეკვეთა</option>
+                  <option value="internship">სტაჟირება / ვაკანსია</option>
+                </optgroup>
+                <optgroup label="სხვა">
+                  <option value="consultation">კონსულტაცია</option>
+                  <option value="other">ზოგადი შეკითხვა</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div>
+              <label for="message" class="block text-xs font-bold text-slate-700 mb-1.5">
+                შეტყობინების ტექსტი <span class="text-red-500">*</span>
+              </label>
+              <textarea id="message" name="message" rows="5" required placeholder="მოკლედ აღწერეთ თქვენი იდეა ან შეკითხვა..." class="w-full px-3.5 sm:px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-slate-50/50"></textarea>
+            </div>
+          </fieldset>
+
+          <!-- დადასტურების ველი -->
+          <div class="flex items-start sm:items-center gap-2.5 sm:gap-3">
+            <input type="checkbox" id="consent" name="consent" required class="mt-0.5 sm:mt-0 w-4 h-4 rounded text-blue-600 focus:ring-blue-500 border-slate-300">
+            <label for="consent" class="text-xs text-slate-600 select-none cursor-pointer leading-snug">
+              ვეთანხმები ჩემი მონაცემების დამუშავებას პასუხის გასაცემად <span class="text-red-500">*</span>
+            </label>
+          </div>
+
+          <!-- ღილაკები -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+            <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold text-sm shadow-md shadow-blue-500/25 hover:bg-blue-700 hover:shadow-lg transition cursor-pointer">
+              <i class="fa-solid fa-paper-plane text-xs"></i>
+              <span>შეტყობინების გაგზავნა</span>
+            </button>
+            <button type="reset" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-slate-100 text-slate-700 font-semibold text-sm hover:bg-slate-200 transition cursor-pointer">
+              <i class="fa-solid fa-rotate-left text-xs"></i>
+              <span>გასუფთავება</span>
+            </button>
+          </div>
+
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- სარდაფი -->
+  <footer class="bg-slate-950 text-slate-400 pt-10 sm:pt-14 pb-8 border-t border-slate-800 mt-auto">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pb-10 border-b border-slate-800/80">
+      <div>
+        <div class="flex items-center gap-2.5 text-xl font-bold text-white mb-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white text-sm shadow-md">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <span>საბა<span class="text-blue-500">.dev</span></span>
+        </div>
+        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm mb-4">
+          პერსონალური პორტფოლიო, შექმნილი სუფთა HTML5 სემანტიკური სტანდარტებისა და Tailwind CSS-ის გამოყენებით.
+        </p>
+        <!-- Dribbble Style Social Media Bar -->
+        <div class="flex items-center gap-2.5">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition border border-slate-800" aria-label="GitHub">
+            <i class="fa-brands fa-github text-sm"></i>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition border border-slate-800" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in text-sm"></i>
+          </a>
+          <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-pink-600 text-slate-400 hover:text-white flex items-center justify-center transition border border-slate-800" aria-label="Dribbble">
+            <i class="fa-brands fa-dribbble text-sm"></i>
+          </a>
+          <a href="mailto:saba.amiranashvilite05@geolab.edu.ge" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition border border-slate-800" aria-label="Email">
+            <i class="fa-solid fa-envelope text-sm"></i>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-4">სწრაფი ნავიგაცია</h4>
+        <ul class="space-y-2 text-xs sm:text-sm">
+          <li><a href="index.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>მთავარი გვერდი</a></li>
+          <li><a href="about.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>ჩემ შესახებ</a></li>
+          <li><a href="projects.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>პროექტების კატალოგი</a></li>
+          <li><a href="skills.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>უნარები & ტექნოლოგიები</a></li>
+          <li><a href="team.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>თანამშრომლები</a></li>
+          <li><a href="contact.html" class="hover:text-blue-400 transition inline-flex items-center gap-2"><i class="fa-solid fa-angle-right text-blue-500 text-xs"></i>კონტაქტი</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-4">საკონტაქტო მონაცემები</h4>
+        <address class="not-italic text-xs sm:text-sm text-slate-400 space-y-2.5">
+          <p class="flex items-center gap-2.5">
+            <i class="fa-solid fa-location-dot text-blue-400 w-4 text-center"></i> თბილისი, საქართველო
+          </p>
+          <p class="flex items-center gap-2.5">
+            <i class="fa-solid fa-envelope text-blue-400 w-4 text-center"></i> <a href="mailto:saba.amiranashvilite05@geolab.edu.ge" class="hover:text-blue-400 transition break-all">saba.amiranashvilite05@geolab.edu.ge</a>
+          </p>
+          <p class="flex items-center gap-2.5">
+            <i class="fa-solid fa-phone text-blue-400 w-4 text-center"></i> <a href="tel:+995555123456" class="hover:text-blue-400 transition">+995 555 12 34 56</a>
+          </p>
+        </address>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center sm:text-left">
+      <p>&copy; <time datetime="2026">2026</time> საბა. ყველა უფლება დაცულია.</p>
+      <p class="flex items-center justify-center gap-1.5">
+        <span>დამზადებულია</span> <i class="fa-solid fa-heart text-red-500 text-xs"></i> <span>HTML5 & Tailwind CSS-ით</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- მობილური ბურგერ მენიუს სკრიპტი -->
+  <script>
+    const burgerBtn = document.getElementById('burger-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    const openIcon = document.getElementById('burger-open-icon');
+    const closeIcon = document.getElementById('burger-close-icon');
+
+    if (burgerBtn && mobileNav) {
+      burgerBtn.addEventListener('click', () => {
+        const isExpanded = burgerBtn.getAttribute('aria-expanded') === 'true';
+        burgerBtn.setAttribute('aria-expanded', !isExpanded);
+        burgerBtn.setAttribute('aria-label', isExpanded ? 'მენიუს გახსნა' : 'მენიუს დახურვა');
+        mobileNav.classList.toggle('hidden');
+        openIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileNav.classList.contains('hidden')) {
+          burgerBtn.setAttribute('aria-expanded', 'false');
+          burgerBtn.setAttribute('aria-label', 'მენიუს გახსნა');
+          mobileNav.classList.add('hidden');
+          openIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768 && !mobileNav.classList.contains('hidden')) {
+          burgerBtn.setAttribute('aria-expanded', 'false');
+          burgerBtn.setAttribute('aria-label', 'მენიუს გახსნა');
+          mobileNav.classList.add('hidden');
+          openIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
