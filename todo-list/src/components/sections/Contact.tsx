@@ -45,7 +45,6 @@ export const Contact: React.FC = () => {
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
-        {/* Left Side: Contact Information using reusable ContactCards */}
         <div className="lg:col-span-5 space-y-4">
           <ContactCard
             icon="fa-solid fa-location-dot"
@@ -70,7 +69,6 @@ export const Contact: React.FC = () => {
             color="indigo"
           />
 
-          {/* Working Hours Card */}
           <Card hoverable className="p-5 bg-gradient-to-br from-blue-50/60 to-indigo-50/50">
             <h4 className="font-bold text-slate-900 text-xs sm:text-sm mb-2 flex items-center gap-2">
               <i className="fa-solid fa-clock text-blue-600"></i>
@@ -87,7 +85,6 @@ export const Contact: React.FC = () => {
           </Card>
         </div>
 
-        {/* Right Side: Interactive Form */}
         <div className="lg:col-span-7">
           <Card className="p-6 sm:p-8">
             {formSubmitted ? (

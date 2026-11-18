@@ -43,7 +43,6 @@ export const Navbar: React.FC = () => {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo */}
           <a
             href="#hero"
             className="flex items-center gap-2.5 text-xl font-extrabold text-blue-600 tracking-tight hover:opacity-90 transition group"
@@ -56,7 +55,6 @@ export const Navbar: React.FC = () => {
             </span>
           </a>
 
-          {/* Desktop Navigation */}
           <nav aria-label="მთავარი ნავიგაცია" className="hidden md:block">
             <ul className="flex items-center gap-1 lg:gap-2 text-sm font-semibold">
               {navigationLinks.map((link) => {
@@ -80,7 +78,6 @@ export const Navbar: React.FC = () => {
             </ul>
           </nav>
 
-          {/* Desktop CTA & Mobile Toggle */}
           <div className="flex items-center gap-3">
             <Button
               variant="primary"
@@ -92,7 +89,6 @@ export const Navbar: React.FC = () => {
               კონტაქტი
             </Button>
 
-            {/* Mobile Hamburger Button */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -113,7 +109,6 @@ export const Navbar: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
           <nav
             aria-label="მობილური ნავიგაცია"

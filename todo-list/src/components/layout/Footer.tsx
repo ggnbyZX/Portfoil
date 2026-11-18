@@ -17,7 +17,6 @@ export const Footer: React.FC = () => {
           <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm mb-4">
             პერსონალური პორტფოლიო, შექმნილი React-ის მოდულარული კომპონენტების, სემანტიკური სტანდარტებისა და Tailwind CSS-ის გამოყენებით.
           </p>
-          {/* Social media pill buttons */}
           <div className="flex items-center gap-2.5">
             <a
               href={personalInfo.socialLinks.github}

@@ -13,14 +13,14 @@ export const Team: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Modals state
+  
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isTodosModalOpen, setIsTodosModalOpen] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
   const [todos, setTodos] = useState<TodoItem[]>([]);
   const [loadingTodos, setLoadingTodos] = useState(false);
 
-  // Form state
+  
   const [formData, setFormData] = useState({
     name: '',
     username: '',
@@ -32,7 +32,7 @@ export const Team: React.FC = () => {
   });
   const [submittingAdd, setSubmittingAdd] = useState(false);
 
-  // Toast notification state
+  
   const [toast, setToast] = useState<{ show: boolean; title: string; body: string; isSuccess: boolean }>({
     show: false,
     title: '',
@@ -47,7 +47,7 @@ export const Team: React.FC = () => {
     }, 4000);
   };
 
-  // GET /users: Fetch employee list
+  
   const fetchEmployees = async () => {
     setLoading(true);
     setError(null);
@@ -67,7 +67,7 @@ export const Team: React.FC = () => {
     fetchEmployees();
   }, []);
 
-  // Filtered employees
+  
   const filteredEmployees = employees.filter((emp) => {
     const q = searchQuery.toLowerCase().trim();
     if (!q) return true;
@@ -80,7 +80,7 @@ export const Team: React.FC = () => {
     );
   });
 
-  // GET /users/{id}/todos: View todos
+  
   const handleViewTodos = async (emp: Employee) => {
     setSelectedEmployee(emp);
     setIsTodosModalOpen(true);
@@ -99,7 +99,7 @@ export const Team: React.FC = () => {
     }
   };
 
-  // DELETE /users/{id}: Delete employee
+  
   const handleDelete = async (id: number, name: string) => {
     if (!window.confirm(`ნამდვილად გსურთ თანამშრომლის „${name}“ წაშლა?`)) {
       return;
@@ -118,7 +118,7 @@ export const Team: React.FC = () => {
     }
   };
 
-  // POST /users: Add employee
+  
   const handleAddSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email) return;
@@ -149,7 +149,7 @@ export const Team: React.FC = () => {
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const created: Employee = await res.json();
-      created.id = Date.now() % 1000 + 11; // Unique id for React key
+      created.id = Date.now() % 1000 + 11; 
 
       setEmployees((prev) => [created, ...prev]);
       setIsAddModalOpen(false);
@@ -190,7 +190,6 @@ export const Team: React.FC = () => {
         }
       />
 
-      {/* Control bar: Search & Count */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
         <div className="relative flex-1 max-w-md">
           <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
@@ -224,7 +223,6 @@ export const Team: React.FC = () => {
         </div>
       </div>
 
-      {/* Loading Skeleton */}
       {loading && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {[1, 2, 3].map((n) => (
@@ -248,7 +246,6 @@ export const Team: React.FC = () => {
         </div>
       )}
 
-      {/* Error State */}
       {error && !loading && (
         <div className="bg-rose-50 border border-rose-200 text-rose-800 rounded-3xl p-6 text-center my-6">
           <i className="fa-solid fa-triangle-exclamation text-2xl text-rose-600 mb-2"></i>
@@ -260,7 +257,6 @@ export const Team: React.FC = () => {
         </div>
       )}
 
-      {/* Grid of reusable EmployeeCards */}
       {!loading && !error && filteredEmployees.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {filteredEmployees.map((emp) => (
@@ -274,7 +270,6 @@ export const Team: React.FC = () => {
         </div>
       )}
 
-      {/* Empty State */}
       {!loading && !error && filteredEmployees.length === 0 && (
         <div className="bg-white border border-slate-200/80 rounded-3xl p-10 text-center my-6">
           <i className="fa-solid fa-user-slash text-3xl text-slate-300 mb-3"></i>
@@ -285,7 +280,6 @@ export const Team: React.FC = () => {
         </div>
       )}
 
-      {/* Reusable Modal for POST /users (Add Employee) */}
       <Modal
         isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
@@ -387,7 +381,6 @@ export const Team: React.FC = () => {
         </form>
       </Modal>
 
-      {/* Reusable Modal for GET /users/{id}/todos */}
       <Modal
         isOpen={isTodosModalOpen}
         onClose={() => setIsTodosModalOpen(false)}
@@ -429,7 +422,6 @@ export const Team: React.FC = () => {
         )}
       </Modal>
 
-      {/* Toast Notification */}
       {toast.show && (
         <div className="fixed bottom-6 right-6 z-50 animate-fade-in">
           <div className="bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 border border-slate-800 text-xs sm:text-sm max-w-md">

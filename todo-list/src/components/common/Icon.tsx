@@ -255,7 +255,7 @@ export const Icon: React.FC<IconProps> = ({ name, size = 20, className = '', ...
         </svg>
       );
     default:
-      // Default to code/brackets icon
+      
       return (
         <svg {...iconProps}>
           <polyline points="16 18 22 12 16 6" />

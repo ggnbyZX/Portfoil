@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ka" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
@@ -6,18 +6,14 @@
   <meta name="description" content="ჩემი უნარები - ტექნიკური და პიროვნული კომპეტენციები">
   <title>უნარები | ჩემი პორტფოლიო</title>
 
-  <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome 6.5.1 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- Lordicon Player -->
   <script src="https://cdn.lordicon.com/lordicon.js"></script>
 
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -42,7 +38,7 @@
     }
   </script>
   <style>
-    /* Styling for semantic <progress> elements */
+    
     progress {
       border: none;
       border-radius: 9999px;
@@ -63,11 +59,9 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased">
 
-  <!-- ზედა პანელი და სემანტიკური ნავიგაცია -->
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="flex items-center justify-between h-16 sm:h-20">
-        <!-- ლოგო -->
         <a href="index.html" class="flex items-center gap-2.5 text-xl font-extrabold text-blue-600 tracking-tight hover:opacity-90 transition">
           <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center text-sm shadow-md shadow-blue-500/25">
             <i class="fa-solid fa-code"></i>
@@ -75,7 +69,6 @@
           <span>საბა<span class="text-slate-900">.dev</span></span>
         </a>
 
-        <!-- დესკტოპ ნავიგაცია -->
         <nav aria-label="მთავარი ნავიგაცია" class="hidden md:block">
           <ul class="flex items-center gap-1 lg:gap-2 text-sm font-semibold">
             <li>
@@ -117,20 +110,16 @@
           </ul>
         </nav>
 
-        <!-- ბურგერ მენიუს ღილაკი მობილურისთვის -->
         <button id="burger-btn" type="button" aria-label="მენიუს გახსნა" aria-expanded="false" aria-controls="mobile-nav" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition cursor-pointer">
-          <!-- ბურგერის აიქონი (3 ხაზი) -->
           <svg id="burger-open-icon" class="w-6 h-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-          <!-- დახურვის აიქონი (X) -->
           <svg id="burger-close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
 
-      <!-- მობილური ჩამოსაშლელი მენიუ -->
       <nav id="mobile-nav" aria-label="მობილური ნავიგაცია" class="hidden md:hidden border-t border-slate-100 py-3.5">
         <ul class="flex flex-col gap-1.5 text-sm font-semibold">
           <li>
@@ -192,16 +181,13 @@
     </div>
   </header>
 
-  <!-- ძირითადი შიგთავსი -->
   <main class="flex-1 max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-12 w-full">
 
-    <!-- გვერდის სათაური -->
     <div class="mb-8 sm:mb-10 pb-5 sm:pb-6 border-b border-slate-200">
       <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-2">უნარები და ტექნოლოგიები</h1>
       <p class="text-slate-500 text-sm sm:text-base">ტექნიკური ცოდნა, პროგრამული ინსტრუმენტები და პიროვნული კომპეტენციები</p>
     </div>
 
-    <!-- ტექნიკური უნარების სექცია -->
     <section class="mb-12 sm:mb-14">
       <div class="mb-4 sm:mb-6">
         <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">ტექნიკური უნარები</h2>
@@ -210,7 +196,6 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
 
-        <!-- ბარათი 1: სემანტიკა & სტრუქტურა -->
         <article class="bg-white rounded-3xl border border-slate-200/80 p-5 sm:p-8 shadow-xs hover:shadow-md transition">
           <div class="flex items-center gap-3 mb-5 sm:mb-6 pb-3 sm:pb-4 border-b border-slate-100">
             <span class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg shrink-0">
@@ -255,7 +240,6 @@
           </dl>
         </article>
 
-        <!-- ბარათი 2: სტილი & განლაგება -->
         <article class="bg-white rounded-3xl border border-slate-200/80 p-5 sm:p-8 shadow-xs hover:shadow-md transition">
           <div class="flex items-center gap-3 mb-5 sm:mb-6 pb-3 sm:pb-4 border-b border-slate-100">
             <span class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg shrink-0">
@@ -303,7 +287,6 @@
       </div>
     </section>
 
-    <!-- პიროვნული უნარების სექცია -->
     <section class="mb-12 sm:mb-14">
       <div class="mb-4 sm:mb-6">
         <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">პიროვნული კომპეტენციები (Soft Skills)</h2>
@@ -353,7 +336,6 @@
       </div>
     </section>
 
-    <!-- სემანტიკური Details & Summary (ხშირად დასმული კითხვები) -->
     <section>
       <div class="mb-4 sm:mb-6">
         <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">ხშირად დასმული კითხვები (FAQ)</h2>
@@ -399,7 +381,6 @@
 
   </main>
 
-  <!-- სარდაფი -->
   <footer class="bg-slate-950 text-slate-400 pt-10 sm:pt-14 pb-8 border-t border-slate-800 mt-auto">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pb-10 border-b border-slate-800/80">
       <div>
@@ -412,7 +393,6 @@
         <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm mb-4">
           პერსონალური პორტფოლიო, შექმნილი სუფთა HTML5 სემანტიკური სტანდარტებისა და Tailwind CSS-ის გამოყენებით.
         </p>
-        <!-- Dribbble Style Social Media Bar -->
         <div class="flex items-center gap-2.5">
           <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition border border-slate-800" aria-label="GitHub">
             <i class="fa-brands fa-github text-sm"></i>
@@ -465,7 +445,6 @@
     </div>
   </footer>
 
-  <!-- მობილური ბურგერ მენიუს სკრიპტი -->
   <script>
     const burgerBtn = document.getElementById('burger-btn');
     const mobileNav = document.getElementById('mobile-nav');

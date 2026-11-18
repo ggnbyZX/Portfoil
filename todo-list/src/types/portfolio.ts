@@ -13,7 +13,7 @@ export interface Project {
 
 export interface SkillItem {
   name: string;
-  level: number; // 0 - 100
+  level: number; 
   iconName?: string;
 }
 

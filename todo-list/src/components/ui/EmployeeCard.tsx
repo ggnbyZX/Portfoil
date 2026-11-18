@@ -34,7 +34,6 @@ export const EmployeeCard: React.FC<EmployeeCardProps> = ({
   return (
     <Card hoverable className="flex flex-col justify-between group">
       <div>
-        {/* Header: Avatar, Name, Username */}
         <div className="flex items-start justify-between gap-3 mb-4">
           <div className="flex items-center gap-3">
             <div
@@ -54,14 +53,12 @@ export const EmployeeCard: React.FC<EmployeeCardProps> = ({
           </span>
         </div>
 
-        {/* Catchphrase */}
         {employee.company?.catchPhrase && (
           <div className="mb-4 bg-blue-50/60 border-l-2 border-blue-500 px-3 py-1.5 rounded-r-xl text-[11px] text-blue-900 italic">
             „{employee.company.catchPhrase}“
           </div>
         )}
 
-        {/* Contact details */}
         <ul className="space-y-2 text-xs text-slate-600 mb-5">
           <li className="flex items-center gap-2.5">
             <i className="fa-solid fa-building text-slate-400 w-4 text-center"></i>
@@ -102,7 +99,6 @@ export const EmployeeCard: React.FC<EmployeeCardProps> = ({
         </ul>
       </div>
 
-      {/* Action buttons */}
       <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
         <Button
           variant="ghost"

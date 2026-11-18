@@ -13,10 +13,8 @@ import { Contact } from './components/sections/Contact';
 export const App: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800 antialiased font-sans">
-      {/* Top Sticky Navigation */}
       <Navbar />
 
-      {/* Main Page Sections */}
       <main className="flex-1 max-w-6xl mx-auto px-4 sm:px-6 w-full">
         <Hero />
         <About />
@@ -28,7 +26,6 @@ export const App: React.FC = () => {
         <Contact />
       </main>
 
-      {/* Page Footer */}
       <Footer />
     </div>
   );

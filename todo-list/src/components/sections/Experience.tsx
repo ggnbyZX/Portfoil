@@ -14,14 +14,12 @@ export const Experience: React.FC = () => {
         subtitle="გამოცდილება, რომელიც საფუძვლად უდევს ჩემს პროფესიულ განვითარებას"
       />
 
-      {/* Grid of reusable ExperienceCards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mb-10 sm:mb-14">
         {experienceData.map((item) => (
           <ExperienceCard key={item.id} item={item} />
         ))}
       </div>
 
-      {/* Education Summary Table */}
       <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xs overflow-hidden">
         <div className="p-5 sm:p-6 border-b border-slate-100 flex items-center justify-between">
           <h3 className="font-bold text-slate-900 text-sm sm:text-base">

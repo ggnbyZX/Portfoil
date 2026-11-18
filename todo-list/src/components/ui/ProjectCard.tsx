@@ -13,7 +13,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onViewDetails
   return (
     <Card padding="none" hoverable className="overflow-hidden flex flex-col justify-between group">
       <div>
-        {/* Project Thumbnail Image */}
         <div className="relative overflow-hidden bg-slate-100 h-48 sm:h-52">
           <img
             src={project.image}
@@ -32,7 +31,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onViewDetails
           )}
         </div>
 
-        {/* Content */}
         <div className="p-5 sm:p-6">
           <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition leading-snug">
             {project.title}
@@ -41,7 +39,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onViewDetails
             {project.description}
           </p>
 
-          {/* Tags */}
           <div className="flex flex-wrap gap-1.5 mb-2">
             {project.tags.map((tag) => (
               <span
@@ -55,7 +52,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onViewDetails
         </div>
       </div>
 
-      {/* Action Buttons */}
       <div className="p-5 sm:p-6 pt-0 border-t border-slate-100/80 mt-2 flex items-center justify-between gap-2.5">
         <Button
           variant="primary"

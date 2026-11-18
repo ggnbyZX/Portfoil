@@ -6,11 +6,8 @@ import { Badge } from '../common/Badge';
 export const Hero: React.FC = () => {
   return (
     <section id="hero" className="pt-6 sm:pt-10 mb-12 sm:mb-16">
-      {/* Hero Banner Box */}
       <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50/40 to-white border border-blue-100/80 rounded-3xl p-6 sm:p-10 md:p-12 shadow-xs flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-12">
-        {/* Text Content */}
         <div className="relative z-10 max-w-xl text-center md:text-left">
-          {/* Greeting Pill */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-blue-200/60 shadow-xs mb-4 text-xs font-semibold text-blue-700">
             <span className="inline-block animate-bounce">👋</span>
             <span>გამარჯობა, მე ვარ {personalInfo.name}</span>
@@ -24,14 +21,12 @@ export const Hero: React.FC = () => {
             {personalInfo.tagline}
           </p>
 
-          {/* Status Badge */}
           <div className="mb-6 flex items-center justify-center md:justify-start gap-2">
             <Badge variant="emerald" icon="fa-solid fa-circle-check">
               {personalInfo.status}
             </Badge>
           </div>
 
-          {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3">
             <Button
               variant="primary"
@@ -56,7 +51,6 @@ export const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Profile Avatar / Photo */}
         <div className="relative z-10 flex flex-col items-center shrink-0">
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full blur-md opacity-30 group-hover:opacity-50 transition duration-300"></div>
@@ -72,11 +66,9 @@ export const Hero: React.FC = () => {
           </figcaption>
         </div>
 
-        {/* Decorative background blur */}
         <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-200/30 rounded-full blur-3xl pointer-events-none"></div>
       </div>
 
-      {/* News / Announcement Banner */}
       <aside className="relative overflow-hidden bg-gradient-to-r from-slate-900 via-slate-850 to-slate-800 text-white rounded-2xl p-5 sm:p-6 mt-6 shadow-md border-l-4 border-blue-500 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-start gap-3.5">
           <div className="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg shrink-0 border border-blue-400/20">

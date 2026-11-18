@@ -20,7 +20,6 @@ html {
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 }
 
-/* Custom scrollbar for modals & tables */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

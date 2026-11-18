@@ -15,14 +15,12 @@ export const Skills: React.FC = () => {
         subtitle="ინსტრუმენტები, რომლებსაც ვიყენებ საიმედო, სწრაფი და ესთეტიკური ვებ-გვერდების ასაგებად"
       />
 
-      {/* Technical Skills: Reusable SkillCard */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mb-12 sm:mb-16">
         {skillCategories.map((category) => (
           <SkillCard key={category.id} category={category} />
         ))}
       </div>
 
-      {/* Soft Skills: Reusable FeatureCard */}
       <div className="mb-12 sm:mb-16">
         <div className="mb-6">
           <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
@@ -46,7 +44,6 @@ export const Skills: React.FC = () => {
         </div>
       </div>
 
-      {/* FAQ Accordion */}
       <div>
         <div className="mb-6">
           <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">

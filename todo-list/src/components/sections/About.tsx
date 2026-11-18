@@ -17,7 +17,6 @@ export const About: React.FC = () => {
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start mb-12 sm:mb-16">
-        {/* Biography Text & Quote */}
         <div className="lg:col-span-7 space-y-4 text-slate-600 text-xs sm:text-base leading-relaxed">
           <p>
             {personalInfo.bio}
@@ -31,7 +30,6 @@ export const About: React.FC = () => {
             ყოველდღიურად ვმუშაობ ახალ პრაქტიკულ ამოცანებზე, ვქმნი მრავალფეროვან კომპონენტებს და ვსწავლობ მსოფლიო დონის საუკეთესო პრაქტიკებს: Clean Code, Component Architecture, Responsive Design, Tailwind CSS და Web Accessibility (A11y).
           </p>
 
-          {/* Quote Blockquote */}
           <blockquote className="my-5 bg-gradient-to-r from-blue-50 to-indigo-50/40 border-l-4 border-blue-600 p-4 sm:p-5 rounded-r-2xl text-blue-900 font-medium italic text-xs sm:text-sm shadow-xs">
             <i className="fa-solid fa-quote-left text-blue-400/50 text-xl mb-1 block"></i>
             {personalInfo.quote}
@@ -41,7 +39,6 @@ export const About: React.FC = () => {
           </blockquote>
         </div>
 
-        {/* Profile Info Aside Card */}
         <div className="lg:col-span-5">
           <Card hoverable className="p-6">
             <div className="relative group mb-4">
@@ -93,14 +90,12 @@ export const About: React.FC = () => {
         </div>
       </div>
 
-      {/* Stats Counter using reusable StatCard */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16">
         {portfolioStats.map((stat) => (
           <StatCard key={stat.id} stat={stat} />
         ))}
       </div>
 
-      {/* Semantic Benefits using reusable FeatureCard component */}
       <div>
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
           <h3 className="text-lg sm:text-2xl font-extrabold text-slate-900 tracking-tight">
